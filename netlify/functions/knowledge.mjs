@@ -123,7 +123,7 @@ ATTACHMENT B — SPORTSMANLIKE DRIVING (simplified): the basic rule is no contac
 `;
 
 export const KART_NOTES = `
-=== WITTEN'S KART — CARE NOTES FROM THE PREVIOUS OWNERS (FRAKES FAMILY) ===
+=== WHITTON'S KART — CARE NOTES FROM THE PREVIOUS OWNERS (FRAKES FAMILY) ===
 Kart: Kid Kart chassis with Honda GXH50 (HPD sealed). Brakes use OTK SA3 brake pads.
 Baselines: Practice tire pressure 14 psi. Race day: narrow tires, higher pressure ~19 psi. Rule max 30 psi after the race.
 Chain: #219, 15T clutch driver / 89T axle sprocket. Tension: 1/4" to 1/2" of play in the middle of the chain run.

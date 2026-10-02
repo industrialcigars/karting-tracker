@@ -1,10 +1,10 @@
-# Witten's Kart Guide
+# Whitton's Kart Guide
 
-A one-page site for Witten's Kid Kart Honda: pack list, before/after checklists, race-day order,
+A one-page site for Whitton's Kid Kart Honda: pack list, before/after checklists, race-day order,
 setup baselines, a maintenance tracker, NTK rules made simple, and an "Ask the rulebook" helper.
 
 ## Files
-- `images/witten-kart.jpg` — hero photo
+- `images/whitton-kart.jpg` — hero photo
 - `index.html` — the whole site (checklists and maintenance save in the browser on each device)
 - `netlify/functions/ask.mjs` — the helper's backend (keeps the API key off the page)
 - `netlify/functions/knowledge.mjs` — condensed 2026 NTK rules + kart notes the helper answers from

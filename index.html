@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Witten's Kart Guide</title>
+<meta name="description" content="Checklists, setup baselines, maintenance and NTK rules for Witten's Kid Kart Honda.">
+<meta name="theme-color" content="#FF6B12">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='4' y='14' width='92' height='72' rx='14' fill='%23FF6B12'/><path d='M30 30 L70 70 M70 30 L30 70' stroke='%23000' stroke-width='12' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Saira+Condensed:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --asphalt:#23262A;
+  --asphalt-2:#3A3F45;
+  --concrete:#EEF0F2;
+  --panel:#FFFFFF;
+  --line:#D3D8DE;
+  --muted:#5D646C;
+  --rookie:#FF6B12;
+  --rookie-deep:#D9530A;
+  --caution:#FFC629;
+  --go:#14875A;
+  --stop:#C9252B;
+  --display:"Saira Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-panel:18px;
+  --radius-row:10px;
+  --tap:56px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;background:var(--concrete);color:var(--asphalt);font-family:var(--body);font-size:17px;line-height:1.5;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+a{color:var(--rookie-deep);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--rookie);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0}
+h2{font-size:clamp(2rem,6vw,2.75rem);font-weight:800;letter-spacing:.005em}
+h3{font-size:1.45rem;font-weight:700}
+p{margin:.4em 0 .9em}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px}
+
+/* ---------- Tabs ---------- */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--asphalt);}
+.tabs nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:860px;margin:0 auto;padding:8px 12px}
+.tabs nav::-webkit-scrollbar{display:none}
+.tabs a{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:1.1rem;color:#C8CDD3;text-decoration:none;padding:8px 14px;border-radius:999px;white-space:nowrap}
+.tabs a[aria-current="page"]{background:var(--rookie);color:#000}
+
+/* ---------- Hero plate ---------- */
+.hero{padding:26px 0 8px}
+.photo{position:relative;margin:0}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:24px;background:#cfd5db}
+.photo .plate{position:absolute;right:14px;bottom:-26px;width:min(34%,170px);aspect-ratio:16/10}
+.plate{position:relative;background:var(--rookie);border-radius:16px;display:grid;place-items:center;box-shadow:0 0 0 5px var(--concrete),inset 0 0 0 4px rgba(0,0,0,.08)}
+.plate::before,.plate::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--concrete);top:9px;box-shadow:inset 0 1px 2px rgba(0,0,0,.35)}
+.plate::before{left:10px}.plate::after{right:10px}
+.plate svg.x{height:70%;width:auto}
+.hero h1{font-weight:800;font-size:clamp(4.2rem,20vw,8rem);line-height:.85;letter-spacing:-.01em;margin-top:22px}
+.hero .sub{font-weight:700;font-size:1.15rem;margin-top:6px}
+.plate-note{color:var(--muted);font-size:.95rem;margin:12px 4px 0}
+
+/* ---------- Sections ---------- */
+section.view{display:none;padding:22px 0 64px}
+section.view.on{display:block}
+.lede{font-size:1.1rem;max-width:62ch;color:var(--asphalt-2)}
+.block{background:var(--panel);border-radius:var(--radius-panel);padding:18px 18px 8px;margin:18px 0;border:1px solid var(--line)}
+.block > h3{margin-bottom:6px}
+.callout{border-left:6px solid var(--caution);background:#FFF8E0;padding:12px 14px;border-radius:0 var(--radius-row) var(--radius-row) 0;margin:14px 0}
+.callout.stop{border-color:var(--stop);background:#FCEBEC}
+.callout p:last-child{margin-bottom:0}
+
+/* Key numbers strip */
+.numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}
+.num{background:var(--asphalt);color:#fff;border-radius:14px;padding:12px 14px 14px}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:2.3rem;line-height:1;color:var(--rookie)}
+.num span{font-size:.92rem;color:#D7DBE0}
+
+/* Quick start buttons */
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.quick a{display:block;background:var(--panel);border:2px solid var(--asphalt);border-radius:14px;padding:14px;text-decoration:none;color:var(--asphalt)}
+.quick a strong{display:block;font-family:var(--display);font-size:1.5rem;line-height:1.05}
+.quick a span{font-size:.92rem;color:var(--muted)}
+@media (max-width:420px){.quick{grid-template-columns:1fr}}
+
+/* ---------- Checklists ---------- */
+.cl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.cl-count{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1}
+.cl-count small{font-family:var(--body);font-weight:400;font-size:.85rem;color:var(--muted);margin-left:4px}
+.bar{height:8px;background:var(--concrete);border-radius:99px;overflow:hidden;margin:6px 0 12px}
+.bar i{display:block;height:100%;width:0;background:var(--go);transition:width .25s ease}
+.cl{list-style:none;margin:0;padding:0}
+.cl li{border-top:1px solid var(--line)}
+.cl label{display:flex;gap:14px;align-items:flex-start;min-height:var(--tap);padding:12px 4px;cursor:pointer}
+.cl input{appearance:none;-webkit-appearance:none;flex:0 0 30px;width:30px;height:30px;margin:0;border:2.5px solid var(--asphalt);border-radius:8px;background:#fff;display:grid;place-items:center;cursor:pointer}
+.cl input:checked{background:var(--go);border-color:var(--go)}
+.cl input:checked::after{content:"";width:9px;height:16px;border:solid #fff;border-width:0 3.5px 3.5px 0;transform:translateY(-2px) rotate(45deg)}
+.cl .t{flex:1}
+.cl .t em{display:block;font-style:normal;font-size:.9rem;color:var(--muted);margin-top:2px}
+.cl input:checked + .t{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1.5px}
+.cl input:checked + .t em{text-decoration:none}
+.cl .sub-h{font-family:var(--display);font-weight:700;font-size:1.15rem;padding:14px 4px 4px;color:var(--rookie-deep);border-top:none}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px;border-radius:999px;border:2px solid var(--asphalt);background:#fff;font-weight:700;cursor:pointer}
+.btn.solid{background:var(--asphalt);color:#fff}
+.btn.orange{background:var(--rookie);border-color:var(--rookie);color:#000}
+.btn.small{min-height:36px;padding:4px 12px;font-size:.92rem}
+.row-btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px}
+.done-banner{display:none;background:var(--go);color:#fff;font-weight:700;border-radius:var(--radius-row);padding:10px 14px;margin:6px 0 12px}
+.done-banner.show{display:block}
+
+/* ---------- Timeline (race day order) ---------- */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{position:relative;padding:4px 0 16px 52px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--asphalt);color:#fff;font-family:var(--display);font-weight:800;font-size:1.2rem;display:grid;place-items:center}
+.steps li::after{content:"";position:absolute;left:17px;top:38px;bottom:2px;width:2px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps b{display:block}
+
+/* ---------- Spec table ---------- */
+.scroll-x{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:.98rem}
+th,td{text-align:left;padding:10px 8px;border-top:1px solid var(--line);vertical-align:top}
+th{font-weight:700;width:38%}
+td .src{display:block;color:var(--muted);font-size:.85rem}
+
+/* Accordions */
+details{border-top:1px solid var(--line)}
+details:first-of-type{border-top:none}
+summary{cursor:pointer;list-style:none;min-height:var(--tap);display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:700;padding:10px 4px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--display);font-size:1.8rem;line-height:1;color:var(--rookie-deep)}
+details[open] summary::after{content:"–"}
+details .inner{padding:0 4px 14px}
+details ul{margin:.2em 0 .6em;padding-left:1.2em}
+
+/* ---------- Maintenance ---------- */
+.counter{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--asphalt);color:#fff;border-radius:var(--radius-panel);padding:16px 18px;margin:18px 0}
+.counter .big{font-family:var(--display);font-weight:800;font-size:3.4rem;line-height:.9;color:var(--rookie)}
+.counter .lbl{flex:1;min-width:160px}
+.counter .lbl small{display:block;color:#C8CDD3}
+.counter .btn{border-color:#fff;background:transparent;color:#fff}
+.counter .btn.orange{background:var(--rookie);border-color:var(--rookie);color:#000}
+.mx{list-style:none;margin:0;padding:0}
+.mx li{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;border-top:1px solid var(--line);padding:12px 4px}
+.mx .what{font-weight:700}
+.mx .every{font-size:.9rem;color:var(--muted)}
+.mx .status{grid-column:1 / -1;font-size:.9rem}
+.mx .status .pill{margin-right:8px}
+.pill{display:inline-block;font-weight:700;font-size:.82rem;border-radius:999px;padding:2px 10px;margin-right:6px}
+.pill.ok{background:#DDF2E8;color:#0C5E3D}
+.pill.soon{background:#FFF0C2;color:#6B4E00}
+.pill.due{background:#FCE0E1;color:#8E1519}
+.pill.never{background:var(--concrete);color:var(--muted)}
+
+/* ---------- Flags ---------- */
+.flags{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:10px 0 16px}
+.flag{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
+.flag .sw{flex:0 0 48px;height:34px;border-radius:4px;border:1px solid rgba(0,0,0,.25)}
+.flag b{display:block;font-family:var(--display);font-size:1.15rem;line-height:1.1}
+.flag span{font-size:.92rem}
+.sw.green{background:#1A9A4B}.sw.yellow{background:#FFD23F}.sw.red{background:#D7262B}
+.sw.black{background:#111}.sw.white{background:#fff}
+.sw.blue{background:linear-gradient(135deg,#1E5BC6 42%,#FF8A1F 42% 58%,#1E5BC6 58%)}
+.sw.check{background:conic-gradient(#000 25%,#fff 0 50%,#000 0 75%,#fff 0) 0 0/16px 16px}
+.sw.meat{background:radial-gradient(circle,#FF7A12 34%,#111 36%)}
+.sw.rolled{background:repeating-linear-gradient(90deg,#111 0 7px,#444 7px 9px)}
+.sw.half{background:linear-gradient(90deg,#1A9A4B 50%,#fff 50%)}
+.sw.yr{background:linear-gradient(90deg,#FFD23F 50%,#D7262B 50%)}
+.sw.yg{background:linear-gradient(90deg,#FFD23F 50%,#1A9A4B 50%)}
+
+/* Links grid */
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:12px 0 18px}
+.links a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--asphalt)}
+.links a b{display:block;font-family:var(--display);font-size:1.2rem;line-height:1.1;color:var(--asphalt)}
+.links a span{font-size:.9rem;color:var(--muted)}
+.links a.main{background:var(--asphalt);border-color:var(--asphalt)}
+.links a.main b{color:var(--rookie);font-size:1.45rem}
+.links a.main span{color:#D7DBE0}
+
+/* ---------- Chat ---------- */
+.chat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-panel);display:flex;flex-direction:column;min-height:460px}
+.log{flex:1;padding:16px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;max-height:60vh}
+.msg{max-width:88%;padding:10px 14px;border-radius:16px;white-space:pre-wrap;word-wrap:break-word}
+.msg.user{align-self:flex-end;background:var(--asphalt);color:#fff;border-bottom-right-radius:4px}
+.msg.bot{align-self:flex-start;background:var(--concrete);border-bottom-left-radius:4px}
+.msg.err{align-self:flex-start;background:#FCEBEC;color:#8E1519}
+.msg.typing{color:var(--muted);font-style:italic}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 12px}
+.chips button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:.92rem;cursor:pointer;text-align:left}
+.ask{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+.ask textarea{flex:1;font:inherit;resize:none;border:2px solid var(--line);border-radius:12px;padding:10px 12px;min-height:48px;max-height:140px}
+.ask textarea:focus{border-color:var(--asphalt);outline:none}
+
+.gear{list-style:none;margin:0;padding:0}
+.gear li{border-top:1px solid var(--line);padding:16px 2px}
+.gear li:first-child{border-top:none}
+.gear h4{font-family:var(--display);font-size:1.4rem;font-weight:700;margin:0 0 4px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.gear .req{font-family:var(--body);font-size:.78rem;font-weight:700;background:var(--asphalt);color:#fff;border-radius:999px;padding:2px 10px}
+.gear .look,.gear .no{margin:6px 0 0;padding-left:30px;position:relative}
+.gear .look::before,.gear .no::before{position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;color:#fff}
+.gear .look::before{content:"\2713";background:var(--go)}
+.gear .no::before{content:"\2715";background:var(--stop)}
+.gear .rule{display:block;color:var(--muted);font-size:.85rem;margin-top:6px}
+footer{color:var(--muted);font-size:.88rem;padding:24px 0 40px;border-top:1px solid var(--line)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .tabs,.row-btns,.btn,.chips,.ask,footer,.hero{display:none!important}
+  body{background:#fff;font-size:12pt}
+  section.view{display:none!important;padding:0}
+  section.view.on{display:block!important}
+  .block{border:none;padding:0}
+  .cl label{min-height:auto;padding:6px 0}
+}
+</style>
+</head>
+<body>
+
+<header class="tabs">
+  <nav aria-label="Sections">
+    <a href="#home">Home</a>
+    <a href="#pack">Pack</a>
+    <a href="#gear">Gear</a>
+    <a href="#before">Before</a>
+    <a href="#after">After</a>
+    <a href="#raceday">Race day</a>
+    <a href="#setup">Setup</a>
+    <a href="#maintenance">Maintenance</a>
+    <a href="#rules">Rules</a>
+    <a href="#ask">Ask</a>
+    <a href="#shop">Shopping</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+<!-- ================= HOME ================= -->
+<section class="view" id="home" aria-labelledby="home-h">
+  <div class="hero">
+    <figure class="photo">
+      <img src="images/witten-kart.jpg" width="1200" height="1200" alt="Witten giving two thumbs up from the seat of his number 4 kart in the back of a pickup truck">
+      <div class="plate" role="img" aria-label="Orange rookie number plate with a black X">
+        <svg class="x" viewBox="0 0 200 200" aria-hidden="true"><path d="M38 38 L162 162 M162 38 L38 162" stroke="#000" stroke-width="34" stroke-linecap="round"/></svg>
+      </div>
+    </figure>
+    <h1 id="home-h">Witten</h1>
+    <p class="sub">Your Kid Kart Honda, before and after every lap.</p>
+    <p class="plate-note">That orange plate with the black X is what rookies run at NTK. It comes off after 3 race days (the orange stays the rest of the year).</p>
+  </div>
+
+  <div class="quick">
+    <a href="#before"><strong>Going to the track</strong><span>Pack list and the before-you-drive check</span></a>
+    <a href="#after"><strong>Just got off track</strong><span>Between sessions, then the end-of-day clean</span></a>
+  </div>
+
+  <h3 style="margin-top:22px">The numbers to remember</h3>
+  <div class="numbers">
+    <div class="num"><b>14 psi</b><span>Practice tire pressure baseline</span></div>
+    <div class="num"><b>19 psi</b><span>Race day, on narrow tires</span></div>
+    <div class="num"><b>¼–½″</b><span>Chain play in the middle</span></div>
+    <div class="num"><b>10W-30</b><span>Engine oil, about 0.25 L (8.5 oz)</span></div>
+    <div class="num"><b>160 lb</b><span>Kart + Witten in gear, minimum</span></div>
+    <div class="num"><b>65 sec</b><span>Lap time he must beat to race</span></div>
+  </div>
+
+  <div class="block">
+    <h3>First time at NTK? Do these first</h3>
+    <ul class="cl" data-list="firsttime"></ul>
+  </div>
+</section>
+
+<!-- ================= PACK ================= -->
+<section class="view" id="pack" aria-labelledby="pack-h">
+  <h2 id="pack-h">Pack the trailer</h2>
+  <p class="lede">Check everything off the night before. If it isn't on the trailer, it isn't at the track.</p>
+  <div class="block" data-block="pack"></div>
+  <p>Witten's driving gear has its own page, with what NTK requires. <a href="#gear">Check the gear page</a>.</p>
+</section>
+
+<!-- ================= GEAR ================= -->
+<section class="view" id="gear" aria-labelledby="gear-h">
+  <h2 id="gear-h">Gear that passes tech</h2>
+  <p class="lede">NTK inspects driver gear and can turn it away (Rule 103.1). If a piece doesn't meet the rule, Witten doesn't drive, so check the labels before you buy. Kart shops sell gear that passes; general sporting goods and motocross stores often don't.</p>
+
+  <div class="callout stop"><p><b>Required every time he's on track, practice days included:</b> helmet, neck brace, rib protector, suit (or jacket and long pants), gloves and enclosed shoes.</p></div>
+
+  <div class="block">
+    <ul class="gear">
+      <li>
+        <h4>Helmet <span class="req">Required</span></h4>
+        <p class="look">Full-face helmet with a face shield (visor). A Snell certification sticker inside the helmet, or a current FIA or FIM certification. For kids his age, the Snell-FIA CMR2016 youth helmets are lighter on a small neck; Snell K and SA rated helmets also qualify.</p>
+        <p class="no">Rejected: DOT-only street helmets, open-face helmets, motocross helmets with goggles instead of a shield, bike or skate helmets, and anything cracked or dropped hard.</p>
+        <p class="look">Fit it snug with no rocking, and check the sticker before you pay. If you're unsure about a particular helmet, show it to the Tech Inspector before buying.</p>
+        <span class="rule">Rule 103.1: Snell certified per IKF rules, or current FIA or FIM</span>
+      </li>
+      <li>
+        <h4>Neck brace <span class="req">Required</span></h4>
+        <p class="look">A karting neck collar or brace. It's only optional for Senior drivers, so Witten needs one.</p>
+        <p class="no">A travel pillow or rolled towel is not a neck brace.</p>
+        <span class="rule">Rule 103.1: approved functional neck brace</span>
+      </li>
+      <li>
+        <h4>Rib protector <span class="req">Required under 13</span></h4>
+        <p class="look">Look for an SFI 20.1 label on the vest itself. Buy it in a youth size from a kart shop.</p>
+        <p class="no">Rejected: protectors with no SFI 20.1 label, including cheap foam vests and sports chest guards.</p>
+        <span class="rule">Rule 103.1: SFI spec 20.1, all racers under 13</span>
+      </li>
+      <li>
+        <h4>Driving suit <span class="req">Required</span></h4>
+        <p class="look">A karting suit, or a jacket plus long pants made of abrasion-resistant material such as leather or heavy vinyl. A one-piece kart suit is the easy choice.</p>
+        <p class="no">Rejected: nylon wind suits, sweatpants, track suits and regular clothes.</p>
+        <span class="rule">Rule 103.1</span>
+      </li>
+      <li>
+        <h4>Gloves <span class="req">Required</span></h4>
+        <p class="look">Full-finger karting gloves that fit snug so he can grip the wheel.</p>
+        <p class="no">Skip fingerless or loose winter gloves.</p>
+        <span class="rule">Rule 103.1</span>
+      </li>
+      <li>
+        <h4>Shoes <span class="req">Required</span></h4>
+        <p class="look">Enclosed shoes. Karting boots with thin soles help him feel the pedals and cover the ankles.</p>
+        <p class="no">No sandals, Crocs or open shoes.</p>
+        <span class="rule">Rule 103.1</span>
+      </li>
+      <li>
+        <h4>Undershirt <span class="req">Recommended</span></h4>
+        <p class="look">A thin, fitted shirt under the rib protector keeps it from rubbing and keeps him cooler in the suit.</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="callout"><p><b>Hand-me-down gear?</b> Check that the helmet sticker is there and the shell isn't damaged, and that the rib protector label still reads SFI 20.1. Helmets that took a hard hit should be replaced even if they look fine.</p></div>
+
+  <div class="block" data-block="gear"></div>
+</section>
+
+<!-- ================= BEFORE ================= -->
+<section class="view" id="before" aria-labelledby="before-h">
+  <h2 id="before-h">Before he drives</h2>
+  <p class="lede">Do this walk-around before every session, not just the first one of the day. Kart on the stand, engine off.</p>
+  <div class="block" data-block="before"></div>
+  <div class="callout stop"><p><b>If the brake pedal is soft, the steering binds, or fuel is leaking, he doesn't go out.</b> Fix it or ask someone in the pits to look first.</p></div>
+</section>
+
+<!-- ================= AFTER ================= -->
+<section class="view" id="after" aria-labelledby="after-h">
+  <h2 id="after-h">After he drives</h2>
+  <p class="lede">The quick list happens after every session. The full clean happens once at the end of the day, and it's where you catch problems before next time.</p>
+  <div class="block" data-block="between"></div>
+  <div class="block" data-block="post"></div>
+</section>
+
+<!-- ================= RACE DAY ================= -->
+<section class="view" id="raceday" aria-labelledby="rd-h">
+  <h2 id="rd-h">How a race day goes</h2>
+  <p class="lede">NTK day races follow this order. Night and morning races shift the times, so check the event page.</p>
+  <div class="block">
+    <ol class="steps">
+      <li><b>Arrive before the sun.</b>Parking spots, unloading and pre-tech all take longer than you think. Come with new race tires already mounted.</li>
+      <li><b>Register (opens 9:00am).</b>You must be registered before going on track. Registration closes an hour before racing. Late registration adds fees and starts him at the back of the final.</li>
+      <li><b>Safety tech.</b>Rookies report to the Race Director for safety tech before the drivers' meeting. The kart needs a current NTK safety tech tag. Have your fire extinguisher ready to show.</li>
+      <li><b>Controlled practice (10:00am).</b>Transponder on the kart. The last practice ("happy hour") sets the order for qualifying. Weigh after happy hour.</li>
+      <li><b>Drivers' meeting (12:30pm).</b>Witten must be there with an adult. Missing it or goofing off costs a grid spot in the final.</li>
+      <li><b>Qualifying.</b>A 5-minute session. As many laps as he can until the checkered flag, then straight to the scales.</li>
+      <li><b>Pre-final.</b>8 laps, lined up by qualifying. As a rookie he starts behind the non-rookies.</li>
+      <li><b>Final.</b>12 laps for Kid Karts with a rolling start. Results decide the trophies. Kid Karts outside the top 3 get a participation medal.</li>
+    </ol>
+  </div>
+  <div class="callout">
+    <p><b>After every session: scales.</b> Kart plus Witten in full gear must weigh at least 160 lb. Don't add anything between the finish line and the scale. If he's light, add bolt-on lead to the seat before the next session.</p>
+  </div>
+  <div class="block" data-block="lessons"></div>
+</section>
+
+<!-- ================= SETUP ================= -->
+<section class="view" id="setup" aria-labelledby="setup-h">
+  <h2 id="setup-h">Setup baseline</h2>
+  <p class="lede">Start here and only change one thing at a time. Write down what you changed and whether it helped.</p>
+
+  <div class="block">
+    <h3>Kart and engine specs</h3>
+    <div class="scroll-x">
+    <table>
+      <tr><th>Tire pressure, practice</th><td>14 psi cold<span class="src">Starting point</span></td></tr>
+      <tr><th>Tire pressure, race day</th><td>About 19 psi on narrow tires<span class="src">Rule max is 30 psi after the race (Rule 302)</span></td></tr>
+      <tr><th>Tires</th><td>Evinco, 4.60-5 max front and rear, rear circumference 33¾″ max<span class="src">Rule 202.1, 302</span></td></tr>
+      <tr><th>Engine oil</th><td>SAE 10W-30, about 0.25 L (8.5 fl oz). Fill to the edge of the filler neck with the kart level.<span class="src">Honda GXH50 spec</span></td></tr>
+      <tr><th>Fuel</th><td>87 octane, ethanol free. On race days it must come from Buc-ee's in Denton, pumps 241 or 242.<span class="src">Rule 203.1</span></td></tr>
+      <tr><th>Spark plug</th><td>NGK CR5HSB (or Denso U16FSR-UB), washer stays on. Gap 0.6–0.7 mm (0.024–0.028″).<span class="src">Rule 302, Honda spec</span></td></tr>
+      <tr><th>Main jet</th><td>#52S. New engines ship with a #55, which is not legal.<span class="src">Rule 302</span></td></tr>
+      <tr><th>Gearing</th><td>#219 chain, 15-tooth clutch, 89-tooth axle sprocket. Not adjustable in this class.<span class="src">Rule 302</span></td></tr>
+      <tr><th>Chain tension</th><td>¼″ to ½″ of play in the middle of the chain</td></tr>
+      <tr><th>Clutch</th><td>HPD clutch with red springs. Never oil it.<span class="src">Rule 302</span></td></tr>
+      <tr><th>Brake pads</th><td>OTK SA3 pads. Run the Honda a little loose for less bite.</td></tr>
+      <tr><th>Wheel nuts</th><td>10 mm socket. Front wheels have spacers.</td></tr>
+      <tr><th>Minimum weight</th><td>160 lb, kart plus driver in full gear<span class="src">Rule 302</span></td></tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>Why the tire pressure matters</h3>
+    <p>Lower pressure gives more grip but makes the kart feel heavy and slow on a low-power engine like the Honda. Higher pressure lets the kart roll more freely, which is usually faster for a Kid Kart. That's why practice starts at 14 psi and race day goes up to about 19 psi on narrow tires.</p>
+    <p>Always set pressure cold, before the session, and check it again right after he comes in. Hot tires read higher. If the hot reading jumps a lot more than usual, something changed.</p>
+  </div>
+
+  <div class="block">
+    <h3>If the kart is doing this, try that</h3>
+    <details><summary>Won't start or dies right away</summary><div class="inner"><ul>
+      <li>Fuel valve on? Fuel in the tank?</li>
+      <li>Kill switch in the run position, and the plug wire pushed all the way on.</li>
+      <li>Oil low? The GXH50's oil alert shuts the engine off when it's low. Check it level.</li>
+      <li>Pull the plug. Wet and black means flooded or fouled: dry it or swap in a spare.</li>
+    </ul></div></details>
+    <details><summary>Bogs or stumbles when he hits the gas</summary><div class="inner"><ul>
+      <li>Check the air filter foam is in and clean.</li>
+      <li>Look for exhaust leaks at the port and muffler. Leaks hurt power and can get you disqualified.</li>
+      <li>Old or wrong fuel. Drain it and refill with fresh ethanol-free fuel.</li>
+      <li>If it keeps happening, the carb needs cleaning or new gaskets.</li>
+    </ul></div></details>
+    <details><summary>Chain falls off or makes noise</summary><div class="inner"><ul>
+      <li>Reset tension to ¼–½″ of play and make sure the engine mount bolts are tight.</li>
+      <li>Sight down the chain. The clutch and axle sprockets should line up straight.</li>
+      <li>Stretched or kinked chain: replace it. Check the sprocket teeth for hooks.</li>
+    </ul></div></details>
+    <details><summary>Brakes grab or the rear wheels lock</summary><div class="inner"><ul>
+      <li>Loosen the brake a little so there's less bite (normal for the Honda).</li>
+      <li>Check pads for glazing or uneven wear and the rotor for oil. Clean with brake cleaner, never WD-40.</li>
+    </ul></div></details>
+    <details><summary>Pedal sticks or doesn't come back</summary><div class="inner"><ul>
+      <li>Check the cable isn't catching in its housing and the return spring is attached.</li>
+      <li>Don't send him out until both pedals return on their own every time.</li>
+    </ul></div></details>
+    <details><summary>Kart pulls to one side</summary><div class="inner"><ul>
+      <li>Check both front tires have the same pressure.</li>
+      <li>Look for a bent tie rod or loose steering bolt. Bent tie rods are common after contact.</li>
+    </ul></div></details>
+  </div>
+</section>
+
+<!-- ================= MAINTENANCE ================= -->
+<section class="view" id="maintenance" aria-labelledby="mx-h">
+  <h2 id="mx-h">Maintenance</h2>
+  <p class="lede">Count every day the kart runs, practice or race, as a track day. Tap the button after each one and this page tells you what's coming due.</p>
+
+  <div class="counter">
+    <div class="big" id="dayCount">0</div>
+    <div class="lbl">track days logged<small id="lastDay">None logged yet</small></div>
+    <button class="btn orange" id="addDay">Log a track day</button>
+    <button class="btn small" id="undoDay">Undo</button>
+  </div>
+
+  <div class="block">
+    <h3>What's due</h3>
+    <p style="color:var(--muted);font-size:.92rem">These intervals are a starting point for a racing Honda, which is far more often than Honda's lawn-equipment schedule. Adjust as you learn the kart.</p>
+    <ul class="mx" id="mxList"></ul>
+  </div>
+</section>
+
+<!-- ================= RULES ================= -->
+<section class="view" id="rules" aria-labelledby="rules-h">
+  <h2 id="rules-h">NTK rules, made simple</h2>
+  <p class="lede">The full rulebook is long. These are the parts that matter for Witten. If something isn't covered, ask the helper or the Race Director.</p>
+
+  <div class="links">
+    <a class="main" href="https://docs.google.com/document/d/1x6AvMMPgpPyy24DxvziJUKfyJ_iYuPLt/edit" target="_blank" rel="noopener"><b>2026 NTK Rulebook</b><span>The full sprint competition rules</span></a>
+    <a href="https://docs.google.com/document/d/12E9WZbuk5N3kjdyNenv2AA5k232-8lIE/edit" target="_blank" rel="noopener"><b>2026 rule changes</b><span>What's new this year, printer friendly</span></a>
+    <a href="https://www.ikfkarting.com/wp-content/uploads/2018/07/2017-0912-HondaGXH50Rules.pdf" target="_blank" rel="noopener"><b>IKF Honda GXH50 rules</b><span>Engine tech for the Honda</span></a>
+    <a href="https://drive.google.com/file/d/1anLqL2n22dNOJBeT7igi1XBP1gUhlajh/view" target="_blank" rel="noopener"><b>Penalty list</b><span>What each infraction costs</span></a>
+    <a href="https://www.ntkarters.com/racing-info/safety-video.html" target="_blank" rel="noopener"><b>Safety video</b><span>Required before his first race</span></a>
+    <a href="https://drive.google.com/file/d/1UfkJABTb75wd7llDanshbaaJa9bwAd5P/view" target="_blank" rel="noopener"><b>Pre-tech form</b><span>Bring it filled out</span></a>
+    <a href="https://www.ntkarters.com/racing-info/karting-resources-2.html" target="_blank" rel="noopener"><b>Race day procedures</b><span>NTK's own walkthrough</span></a>
+    <a href="https://www.ntkarters.com/racing-info/safety-gear.html" target="_blank" rel="noopener"><b>Safety gear</b><span>What's required on track</span></a>
+    <a href="https://northtexaskarters.alphatiming.co.uk/register/events" target="_blank" rel="noopener"><b>Register for a race</b><span>Before Thursday 10pm avoids the late fee</span></a>
+    <a href="https://www.ntkarters.com/calendar.html" target="_blank" rel="noopener"><b>Calendar</b><span>Race dates and work days</span></a>
+    <a href="https://www.ntkarters.com/racing-info/transponders.html" target="_blank" rel="noopener"><b>Transponders</b><span>Free for rookie Kid Karts</span></a>
+    <a href="https://www.ntkarters.com/club-info/class-mentors.html" target="_blank" rel="noopener"><b>Class mentors</b><span>Real people who'll help you</span></a>
+  </div>
+
+  <div class="block">
+    <h3>The rules that matter most for Witten</h3>
+    <details><summary>Being a rookie</summary><div class="inner">
+      <p>Orange number plate on the back of the kart, with a black X for his first 3 race days. During those 3 race days he starts at the back of every session. The orange plate stays on the rest of the calendar year. He has to watch the NTK safety video and complete new-driver orientation first. <i>(Rule 104.1)</i></p>
+      <p>He has to be able to run a lap in 65 seconds or quicker before his rookie card gets signed. If he can't yet, NTK refunds the entry. <i>(Rule 103.6)</i></p>
+    </div></details>
+    <details><summary>What he has to wear</summary><div class="inner">
+      <p>Driving suit or jacket plus long pants made of abrasion-resistant material, full-face helmet with shield (Snell, FIA or FIM), neck brace, enclosed shoes and gloves, every time he's on track. Rib or chest protector (SFI 20.1) is required for everyone under 13. <i>(Rule 103.1)</i></p>
+    </div></details>
+    <details><summary>Kid Kart Honda engine rules</summary><div class="inner">
+      <ul>
+        <li>Engine must keep its Honda Performance Division (HPD) seal and follow the IKF GXH50 rules.</li>
+        <li>#52S main jet. Engines ship with a #55, which has to be swapped.</li>
+        <li>#219 chain, 15-tooth clutch, 89-tooth sprocket.</li>
+        <li>Stock air filter with the foam insert.</li>
+        <li>NGK CR5HSB or Denso U16FSR-UB plug, washer stays on.</li>
+        <li>Stock kill switch stays connected. An extra one within his reach is allowed.</li>
+        <li>HPD clutch, red springs, no modifications, no oiling.</li>
+        <li>Exhaust exactly as supplied. Seal the port and muffler with copper RTV, because a leak can get him disqualified.</li>
+      </ul>
+      <p><i>(Rule 302)</i></p>
+    </div></details>
+    <details><summary>Kart and chassis</summary><div class="inner">
+      <ul>
+        <li>Current NTK safety tech tag on the chassis, or the kart can't go on track at all. <i>(201.2)</i></li>
+        <li>Chain guard must fully cover the chain from above and behind.</li>
+        <li>Side pods (or double nerf bars) and a nose cone are mandatory. Rear bumper must protect the rear tires.</li>
+        <li>Numbers on all four sides. <i>(201.4)</i></li>
+        <li>Transponder on the back of the seat, about 25 cm off the ground, vertical. Rookie Kid Karts get one free. <i>(201.6)</i></li>
+        <li>Minimum weight 160 lb with Witten in full gear. <i>(302)</i></li>
+      </ul>
+    </div></details>
+    <details><summary>In the pits</summary><div class="inner">
+      <ul>
+        <li>Only start the kart on a stand with the rear wheels off the ground, or with a driver in it holding the brake. Never on the concrete pit runner. <i>(103.3)</i></li>
+        <li>No long, high-rev runs in the pits.</li>
+        <li>You must have a fire extinguisher in your pit. <i>(103.3)</i></li>
+        <li>No bikes, scooters or balls in the pits. Pets on a short leash, never in the grid or tech barn. <i>(103.7)</i></li>
+        <li>On the grid, engines run on the ground only, not on stands. <i>(502.1)</i></li>
+      </ul>
+    </div></details>
+    <details><summary>On track</summary><div class="inner">
+      <ul>
+        <li>If the kart stops on the track, stay put and raise both hands once it's fully stopped. Raise one hand when slowing down or pulling off. <i>(103.5)</i></li>
+        <li>Kid Karts use rolling starts, and track volunteers can restart a Kid Kart that stalls. <i>(503.6, 503.7)</i></li>
+        <li>No radios or talking to the driver on race day. <i>(503.2)</i></li>
+        <li>The basic rule is no contact. The kart behind is responsible for not hitting the kart in front. <i>(Attachment B)</i></li>
+      </ul>
+    </div></details>
+  </div>
+
+  <h3 style="margin-top:24px">The flags</h3>
+  <p style="color:var(--muted)">Go over these with Witten until he can name them all.</p>
+  <div class="flags">
+    <div class="flag"><div class="sw green"></div><div><b>Green</b><span>Go. The track is clear.</span></div></div>
+    <div class="flag"><div class="sw yellow"></div><div><b>Yellow</b><span>Trouble ahead. Slow down and no passing.</span></div></div>
+    <div class="flag"><div class="sw red"></div><div><b>Red</b><span>Stop safely and turn off the engine.</span></div></div>
+    <div class="flag"><div class="sw yr"></div><div><b>Yellow and red together</b><span>Restart coming. Line back up slowly.</span></div></div>
+    <div class="flag"><div class="sw black"></div><div><b>Black</b><span>Come in to the tech area now.</span></div></div>
+    <div class="flag"><div class="sw rolled"></div><div><b>Rolled black</b><span>A warning. Drive cleaner.</span></div></div>
+    <div class="flag"><div class="sw meat"></div><div><b>Black with orange ball</b><span>Something's wrong with the kart. Pit next lap.</span></div></div>
+    <div class="flag"><div class="sw blue"></div><div><b>Blue</b><span>Faster karts behind. Hold your line and let them by.</span></div></div>
+    <div class="flag"><div class="sw yg"></div><div><b>Yellow and green crossed</b><span>Pace lap. Line up.</span></div></div>
+    <div class="flag"><div class="sw half"></div><div><b>Green and white crossed</b><span>Halfway done.</span></div></div>
+    <div class="flag"><div class="sw white"></div><div><b>White</b><span>One lap to go.</span></div></div>
+    <div class="flag"><div class="sw check"></div><div><b>Checkered</b><span>Finished. Slow down and come in.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= ASK ================= -->
+<section class="view" id="ask" aria-labelledby="ask-h">
+  <h2 id="ask-h">Ask the rulebook</h2>
+  <p class="lede">Type a question in plain words. Answers come from the 2026 NTK rulebook and the kart notes on this site, with the rule number so you can check it.</p>
+  <div class="chat">
+    <div class="log" id="log" aria-live="polite">
+      <div class="msg bot">Hi! Ask me anything about NTK rules, race day, or Witten's kart. For example: "Does Witten need a neck brace?"</div>
+    </div>
+    <div class="chips" id="chips">
+      <button type="button">What fuel can we use on race day?</button>
+      <button type="button">How long is the Kid Kart final?</button>
+      <button type="button">What happens if he's under weight?</button>
+      <button type="button">When does the rookie X come off?</button>
+      <button type="button">What does the meatball flag mean?</button>
+    </div>
+    <form class="ask" id="askForm">
+      <label for="q" class="sr" style="position:absolute;left:-9999px">Your question</label>
+      <textarea id="q" rows="1" placeholder="Ask a question" required></textarea>
+      <button class="btn solid" type="submit" id="send">Ask</button>
+    </form>
+  </div>
+  <p style="color:var(--muted);font-size:.88rem;margin-top:10px">The helper can make mistakes. For anything that decides a race result, confirm with the Race Director.</p>
+</section>
+
+<!-- ================= SHOP ================= -->
+<section class="view" id="shop" aria-labelledby="shop-h">
+  <h2 id="shop-h">Good to have on hand</h2>
+  <p class="lede">Spares and tools that save a race day. Check them off as you buy them.</p>
+  <div class="block" data-block="shop"></div>
+</section>
+
+<footer>
+  Built for Witten by the Frakes family. Checkmarks and maintenance dates save on this device only. Rules summarized from the 2026 NTK Sprint Competition Rulebook; the rulebook always wins.
+</footer>
+</main>
+
+<script>
+/* ---------------- Storage helpers ---------------- */
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* ---------------- Checklist data ---------------- */
+const LISTS = {
+  firsttime: { items: [
+    ["Watch the NTK safety video", "Required for every new driver (Rule 104.1)"],
+    ["Get an orange number plate with a black X", "On the back of the kart (Rule 104.1)"],
+    ["Get the kart safety teched and tagged", "No tag, no track time (Rule 201.2)"],
+    ["Buy gear that passes tech", "Helmet, neck brace, SFI 20.1 rib protector, suit, gloves, shoes. See the Gear page"],
+    ["Fire extinguisher for your pit", "You'll show it at safety tech (Rule 103.3)"],
+    ["Transponder sorted", "Rookie Kid Karts get one free (Rule 201.6)"],
+    ["Swap the #55 main jet for a #52S", "If the engine still has the factory jet (Rule 302)"],
+    ["Bring proof of Witten's age and sign the minor waiver", "Rule 104.2"],
+    ["Fill out the pre-tech form", "Link is on the Rules page"]
+  ]},
+  pack: { title: "Kart and tools", items: [
+    ["Kart"],
+    ["Gas can with ethanol-free fuel", "Race days: Buc-ee's Denton, pumps 241 or 242"],
+    ["NTK key fob"],
+    ["Tire pressure gauge"],
+    ["Wrenches, sockets and Allen key set", "Include a 10 mm socket for the wheels"],
+    ["Spare parts kit"],
+    ["Kart stand"],
+    ["Tire pump"],
+    ["Fire extinguisher", "Required in every pit"],
+    ["Simple Green, WD-40, rags", "For the end-of-day clean"]
+  ]},
+  gear: { title: "Pack his gear", items: [
+    ["Helmet"],
+    ["Driving suit"],
+    ["Gloves"],
+    ["Shoes"],
+    ["Neck brace"],
+    ["Rib protector (SFI 20.1)"],
+    ["Undershirt"]
+  ]},
+  before: { title: "Walk-around", items: [
+    ["Fuel tank filled and fuel line turned on"],
+    ["Oil level checked on level ground", "Engine off. 10W-30, filled to the edge of the filler neck"],
+    ["Tire pressures set cold", "14 psi practice, about 19 psi race day"],
+    ["Wheel nuts tight, front spacers in place"],
+    ["Chain tension ¼–½″ and chain guard on"],
+    ["Brake pedal firm, kart won't roll with brake pushed"],
+    ["Throttle snaps closed on its own"],
+    ["Steering turns lock to lock without binding"],
+    ["Spark plug wire pushed on, kill switch works"],
+    ["Air filter and foam in place"],
+    ["No loose bolts, no dangling zip ties or cables"],
+    ["Transponder on and charged"],
+    ["Number panels on all four sides, orange rookie plate on the back"],
+    ["Start the kart on the stand only", "Rear wheels off the ground (Rule 103.3)"],
+    ["Witten fully geared up", "Helmet, suit, gloves, shoes, neck brace, rib protector"]
+  ]},
+  between: { title: "After every session (quick)", items: [
+    ["Check hot tire pressures and write them down", "Hot readings run higher than cold"],
+    ["Look over the chain and guard"],
+    ["Check for anything loose or bent after contact", "Tie rods, nose cone, side pods"],
+    ["Ask Witten how the kart felt", "Slow in corners? Hard to turn? Brakes grabby?"],
+    ["Top off fuel"],
+    ["Reset tire pressures cold before the next session"]
+  ]},
+  post: { title: "End of the day (full clean)", items: [
+    ["Turn off fuel line"],
+    ["Clean all plastics with Simple Green"],
+    ["Clean all metal with WD-40", "Keep WD-40 off the brake rotor and pads"],
+    ["Check brake and throttle cable tension"],
+    ["Pedals travel and return easily", "Cables not catching in the housing"],
+    ["Remove wheels and clean all sides and contacts", "10 mm socket. Watch for the spacers on the front wheels"],
+    ["Wipe down the motor"],
+    ["Inspect all bolts for loosening"],
+    ["Check electrical cables for broken zip ties"],
+    ["WD-40 the dust shields on the rear axle"],
+    ["WD-40 the steering linkage bearings"],
+    ["Remove and check the spark plug", "Tan is good. Black and wet means rich or fouled"],
+    ["Check chain tension", "¼–½″ of play in the center"],
+    ["Log the track day on the Maintenance page"]
+  ]},
+  lessons: { title: "Lessons learned the hard way", items: [
+    ["Arrive earlier than the sun"],
+    ["Come with new race tires already mounted", "Don't change tires the morning of"],
+    ["Narrow tires and high pressure for the Honda on race day", "About 19 psi"],
+    ["Loosen the Honda brakes for less bite"]
+  ]},
+  shop: { title: "Shopping list", items: [
+    ["Tire scissors and bead breaker"],
+    ["Spare GXH clutch", "219 chain, 15-tooth driver, red springs"],
+    ["Spare GXH carburetor"],
+    ["Spare GXH50 chain (#219)"],
+    ["Carb gasket and seal kit"],
+    ["Power drill for wheels"],
+    ["Spare Honda tie rods"],
+    ["OTK SA3 brake pads", "Confirm the exact pad set for your caliper at the kart shop"],
+    ["Spare spark plugs: NGK CR5HSB"],
+    ["10W-30 engine oil"],
+    ["Copper RTV sealant", "For the exhaust port and muffler"],
+    ["Bolt-on lead weight", "In case kart plus driver is under 160 lb"]
+  ]}
+};
+
+function renderList(key, mount, withHeading){
+  const def = LISTS[key];
+  const saved = store.get("cl:"+key, {});
+  const wrap = document.createElement("div");
+  if (withHeading){
+    wrap.innerHTML = `<div class="cl-head"><h3>${def.title}</h3><div class="cl-count"><span data-n></span><small data-of></small></div></div><div class="bar"><i></i></div><div class="done-banner">All done. Nice work.</div>`;
+  }
+  const ul = mount.tagName === "UL" ? mount : document.createElement("ul");
+  ul.className = "cl";
+  def.items.forEach(([t, note], i) => {
+    const li = document.createElement("li");
+    const id = `c-${key}-${i}`;
+    li.innerHTML = `<label for="${id}"><input type="checkbox" id="${id}" ${saved[i] ? "checked" : ""}><span class="t">${t}${note ? `<em>${note}</em>` : ""}</span></label>`;
+    li.querySelector("input").addEventListener("change", e => {
+      const s = store.get("cl:"+key, {}); s[i] = e.target.checked; store.set("cl:"+key, s); update();
+    });
+    ul.appendChild(li);
+  });
+  if (mount.tagName !== "UL"){
+    mount.appendChild(wrap);
+    mount.appendChild(ul);
+    const btns = document.createElement("div");
+    btns.className = "row-btns";
+    btns.innerHTML = `<button class="btn small" type="button" data-reset>Clear checks</button><button class="btn small" type="button" data-print>Print</button>`;
+    btns.querySelector("[data-reset]").onclick = () => { store.set("cl:"+key, {}); ul.querySelectorAll("input").forEach(x => x.checked = false); update(); };
+    btns.querySelector("[data-print]").onclick = () => window.print();
+    mount.appendChild(btns);
+  }
+  function update(){
+    if (!withHeading) return;
+    const all = ul.querySelectorAll("input"), n = [...all].filter(x => x.checked).length;
+    wrap.querySelector("[data-n]").textContent = n;
+    wrap.querySelector("[data-of]").textContent = `of ${all.length}`;
+    wrap.querySelector(".bar i").style.width = (n / all.length * 100) + "%";
+    wrap.querySelector(".done-banner").classList.toggle("show", n === all.length);
+  }
+  update();
+}
+document.querySelectorAll("[data-block]").forEach(el => renderList(el.dataset.block, el, true));
+document.querySelectorAll("ul[data-list]").forEach(el => renderList(el.dataset.list, el, false));
+
+/* ---------------- Maintenance tracker ---------------- */
+const MX = [
+  { id:"oil",    what:"Change engine oil",                     every:2,  how:"10W-30, about 0.25 L. Drain while warm." },
+  { id:"plugck", what:"Pull and read the spark plug",          every:1,  how:"Part of the end-of-day clean." },
+  { id:"plug",   what:"Replace spark plug",                    every:6,  how:"NGK CR5HSB, gap 0.6–0.7 mm. Sooner if fouled." },
+  { id:"air",    what:"Clean air filter foam",                 every:2,  how:"Wash, dry fully, reinstall. Foam insert is required." },
+  { id:"pads",   what:"Inspect brake pads",                    every:1,  how:"OTK SA3. Replace when thin or wearing unevenly." },
+  { id:"chain",  what:"Replace chain",                         every:8,  how:"#219. Sooner if it won't hold tension." },
+  { id:"sprk",   what:"Inspect axle sprocket and clutch drum", every:4,  how:"Hooked teeth or grooves mean replace. Never oil the clutch." },
+  { id:"carb",   what:"Clean carburetor, new gaskets",         every:10, how:"Or anytime it bogs or idles badly." },
+  { id:"exh",    what:"Check exhaust seal (copper RTV)",       every:2,  how:"Leaks cost power and can mean a DQ." },
+  { id:"steer",  what:"Check tie rods and steering bolts",     every:1,  how:"Bent tie rods are common after contact." },
+  { id:"brg",    what:"Check wheel and axle bearings",         every:4,  how:"Spin each wheel. Rough or gritty means replace." },
+  { id:"tires",  what:"Mount fresh race tires",                every:0,  how:"Before every race day, the night before." },
+  { id:"engine", what:"Engine check by an HPD engine builder", every:0,  how:"Once a season. Don't break the HPD seals yourself." }
+];
+function mxState(){ return store.get("mx", { days: [], done: {} }); }
+function renderMx(){
+  const s = mxState(), count = s.days.length;
+  document.getElementById("dayCount").textContent = count;
+  document.getElementById("lastDay").textContent = count ? "Last one " + new Date(s.days[count-1]).toLocaleDateString() : "None logged yet";
+  const ul = document.getElementById("mxList"); ul.innerHTML = "";
+  MX.forEach(m => {
+    const d = s.done[m.id];
+    let pill, text;
+    if (m.every === 0){
+      pill = d ? `<span class="pill ok">Done ${new Date(d.date).toLocaleDateString()}</span>` : `<span class="pill never">Not done yet</span>`;
+      text = m.how;
+    } else if (!d){
+      pill = `<span class="pill never">Not done yet</span>`; text = m.how;
+    } else {
+      const since = count - d.day, left = m.every - since;
+      pill = left <= 0 ? `<span class="pill due">Due now</span>` : left === 1 ? `<span class="pill soon">Due next track day</span>` : `<span class="pill ok">Due in ${left} track days</span>`;
+      text = `Last done ${new Date(d.date).toLocaleDateString()}. ${m.how}`;
+    }
+    const li = document.createElement("li");
+    li.innerHTML = `<div><div class="what">${m.what}</div><div class="every">${m.every ? (m.every === 1 ? "Every track day" : `Every ${m.every} track days`) : (m.id === "tires" ? "Every race day" : "Every season")}</div></div>
+      <button class="btn small" type="button">Done today</button><div class="status">${pill}${text}</div>`;
+    li.querySelector("button").onclick = () => { const st = mxState(); st.done[m.id] = { date: Date.now(), day: st.days.length }; store.set("mx", st); renderMx(); };
+    ul.appendChild(li);
+  });
+}
+document.getElementById("addDay").onclick = () => { const s = mxState(); s.days.push(Date.now()); store.set("mx", s); renderMx(); };
+document.getElementById("undoDay").onclick = () => { const s = mxState(); s.days.pop(); store.set("mx", s); renderMx(); };
+renderMx();
+
+/* ---------------- Router ---------------- */
+function route(){
+  const id = (location.hash || "#home").slice(1);
+  const target = document.getElementById(id) && document.getElementById(id).classList.contains("view") ? id : "home";
+  document.querySelectorAll("section.view").forEach(s => s.classList.toggle("on", s.id === target));
+  document.querySelectorAll(".tabs a").forEach(a => {
+    const on = a.getAttribute("href") === "#" + target;
+    a.toggleAttribute("aria-current", on); if (on) a.setAttribute("aria-current", "page");
+    if (on) a.scrollIntoView({ block: "nearest", inline: "center" });
+  });
+  window.scrollTo(0, 0);
+}
+addEventListener("hashchange", route); route();
+
+/* ---------------- Chat ---------------- */
+const log = document.getElementById("log"), form = document.getElementById("askForm"), q = document.getElementById("q"), send = document.getElementById("send");
+const history = [];
+function add(cls, text){ const d = document.createElement("div"); d.className = "msg " + cls; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+async function ask(text){
+  text = text.trim(); if (!text) return;
+  add("user", text); history.push({ role: "user", content: text });
+  q.value = ""; send.disabled = true;
+  const wait = add("bot typing", "Checking the rulebook…");
+  try{
+    const r = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: history }) });
+    const data = await r.json().catch(() => ({}));
+    wait.remove();
+    if (!r.ok || !data.answer){ add("err", data.error || "The helper isn't set up yet. Use the rulebook link on the Rules page for now."); history.pop(); }
+    else { add("bot", data.answer); history.push({ role: "assistant", content: data.answer }); }
+  }catch(e){
+    wait.remove(); add("err", "Couldn't reach the helper. Check your signal and try again."); history.pop();
+  }
+  send.disabled = false;
+}
+form.addEventListener("submit", e => { e.preventDefault(); ask(q.value); });
+q.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey){ e.preventDefault(); ask(q.value); } });
+document.querySelectorAll("#chips button").forEach(b => b.onclick = () => ask(b.textContent));
+</script>
+</body>
+</html>
